@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the EhTeam!</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <og:title content="Welcome to the EhTeam!">
+    <og:description content="Join the EhTeam community today!">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'RifficBold';
+            src: url('rifficbold.ttf') format('truetype');
+        }
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden; 
+            background-color: #f5f5f5;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        #hero {
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 60% 40%;
+            filter: blur(500px);
+            opacity: 0.65;
+            animation: moveBlob 60s infinite alternate ease-in-out, morphBlob 60s infinite alternate ease-in-out;
+            z-index: 0;
+        }
+
+        .blob:nth-child(3) {
+            background-color: #ff4d4d91;
+            width: 800px;
+            height: 600px;
+            top: 15%;
+            left: 15%;
+        }
+
+        .blob:nth-child(4) {
+            background-color: #7f46ca9d;
+            width: 600px;
+            height: 400px;
+            bottom: 15%;
+            right: 15%;
+            animation-delay: 10s;
+        }
+
+        @keyframes moveBlob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            20% {
+                transform: translate(-200px, 100px) scale(1.2);
+            }
+            40% {
+                transform: translate(-200px, -200px) scale(0.8);
+            }
+            60% {
+                transform: translate(100px, -300px) scale(1.2);
+            }
+            80% {
+                transform: translate(300px, 300px) scale(1);
+            }
+            100% {
+                transform: translate(-150px, 75px) scale(1.1);
+            }
+        }
+
+        @keyframes morphBlob {
+            0% {
+                border-radius: 50% 40%;
+            }
+            50% {
+                border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+            }
+            100% {
+                border-radius: 50% 40%;
+            }
+        }
+
+        #hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: rgba(7, 7, 7, 0.7);
+            z-index: 2;
+        }
+
+        #hero h2 {
+            font-family: 'RifficBold', sans-serif;
+            font-size: 7em;
+            background: linear-gradient(to right,  #f52929, #810791);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0; 
+            transition: opacity 1s ease-in-out;
+            z-index: 3;
+        }
+        footer {
+            background: linear-gradient(to right,  #460469, #350791);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            border-radius: 20px 20px 0 0;
+            margin-top: 50px;
+            font-size: 1.2em;
+        }
+        footer ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin: 0 10px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        #hero.show-ehteam h2 {
+            opacity: 1; 
+        }
+
+        .arrow-down {
+            position: absolute;
+            bottom: 20px;
+            font-size: 4em;
+            color: rgba(17, 17, 17, 0.7);
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+
+        #hero.show-ehteam .arrow-down {
+            opacity: 1;
+        }
+
+        #why-join {
+            padding-top: 150px;
+            background-color: #f5f5f5;
+            padding-right: 20px;
+            padding-bottom: 40px;
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        #why-join h3 {
+            font-family: 'RifficBold', sans-serif;
+            font-size: 5em;
+            margin-bottom: 30px;
+            color: #222222;
+        }
+
+        #why-join p {
+            font-size: 2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #222222;
+        }
+
+        .gradient-text {
+            font-family: 'RifficBold', sans-serif;
+            background: linear-gradient(to right, #ff4d4d, #b565c0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.2em;
+        }
+
+        #scrolling-text {
+            font-size: 1em;
+            line-height: 1em;
+            font-weight: bold;
+            background: linear-gradient(to right, #ff4d4d, #b565c0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #testimonials {
+            padding: 60px 20px;
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+            color: #fff;
+        }
+
+        #testimonials h3 {
+            font-family: 'RifficBold', sans-serif;
+            font-size: 4em;
+            margin-bottom: 30px;
+            color: #222222;
+        }
+
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            min-width: 99%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 60px 80px;
+            margin: 10px 10px;
+            background: linear-gradient(to right, #230553, #5d0797);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .testimonial-card .quote {
+            font-size: 1.8em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .testimonial-card .author {
+            font-size: 1.2em;
+            color: #ccc;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            border: none;
+            width: 50px; 
+            height: 50px; 
+            cursor: pointer;
+            font-size: 2em;
+            z-index: 1;
+            transition: background-color 0.3s ease;
+            border-radius: 50%;
+            display: flex;
+            padding: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-button.prev {
+            left: 30px;
+        }
+
+        .carousel-button.next {
+            right: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .blob:nth-child(3) {
+                width: 500px;
+                height: 350px;
+                top: 20%;
+                left: 10%;
+            }
+
+            .blob:nth-child(4) {
+                width: 350px;
+                height: 250px;
+                bottom: 20%;
+                right: 10%;
+            }
+
+            #hero h1 {
+                font-size: 2em;
+            }
+
+            #hero h2 {
+                font-size: 4em;
+            }
+
+            .arrow-down {
+                font-size: 2em;
+            }
+
+            #why-join h3 {
+                font-size: 3em;
+            }
+
+            #why-join p {
+                font-size: 2em;
+            }
+
+            .gradient-text {
+                font-size: 1em;
+            }
+
+            #testimonials h3 {
+                font-size: 2em;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            .testimonial-card .quote {
+                font-size: 1.2em;
+            }
+
+            .testimonial-card .author {
+                font-size: 1em;
+            }
+        }
+
+        #join-ehteam {
+            padding: 60px 20px;
+            margin-top: 50px;
+            text-align: center;
+            background-color: #f5f5f5;
+            display: inline-block;
+        }
+
+        #join-ehteam h3 {
+            font-family: 'RifficBold', sans-serif;
+            font-size: 4em;
+            margin-bottom: 30px;
+            color: #222222;
+        }
+
+        .join-button {
+            font-family: 'RifficBold', sans-serif;
+            font-size: 1.5em;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(to right, #ff4d4d, #b565c0);
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            transition: ease-in-out 0.3s;
+            display: inline-block;
+        }
+
+        .join-button:hover {
+            background: linear-gradient(to right, #b565c0, #ff4d4d);
+            scale: 1.1;
+            transition: ease-in-out 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <section id="hero">
+        <h1>Welcome To The</h1>
+        <h2 id="ehteam-title">EhTeam</h2> 
+        <div class="blob"></div> 
+        <div class="blob"></div>
+        <div class="arrow-down" id="arrow-down">&#x2193;</div>
+    </section>
+
+    <section id="why-join">
+        <h3>Who are we?</h3>
+        <p>We are a community of <span class="gradient-text" id="member-count">225,000+</span> members that love <span id="scrolling-text"></span>.</p>
+    </section>
+
+    <section id="testimonials">
+        <h3>What Our Members Say</h3>
+        <div class="carousel">
+            <div class="testimonial-card">
+                <p class="quote">"The Eh Team is a good community, because of the ability to be in a safe space when you want it to be one, and also a fun space where everyone loves and treats each other with respect."</p>
+                <p class="author">- Spidey, Member Since 2018</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="quote">"Never Back Down Never What?!"</p>
+                <p class="author">- NickEh30</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="quote">"I love the positive vibes, and kindness from everyone."</p>
+                <p class="author">- TheCoolDoggo, Member Since 2023</p>
+            </div>
+        </div>
+        <button class="carousel-button prev">&#10094;</button>
+        <button class="carousel-button next">&#10095;</button>
+    </section>
+
+    <section id="join-ehteam">
+        <h3>What are you waiting for? Join the EhTeam!</h3>
+        <a href="https://twitch.tv/nickeh30" target="_blank"><button class="join-button">Twitch</button></a>
+        <a href="https://discord.gg/nickeh30" target="_blank"><button class="join-button">Discord</button></a>
+    </section>
+
+    <footer>
+        <p>Non-Offical. Made with love by TheCoolDoggo. Go out into the world and create something amazing 🤍</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = document.querySelector('.carousel');
+            const cards = document.querySelectorAll('.testimonial-card');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const nextButton = document.querySelector('.carousel-button.next');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                const offset = -currentIndex * 102;
+                cards.forEach(card => {
+                    card.style.transform = `translateX(${offset}%)`;
+                });
+            }
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : cards.length - 1;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
+                updateCarousel();
+            });
+
+            updateCarousel();
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('hero').classList.add('show-ehteam');
+            }, 750); 
+            setTimeout(() => {
+                document.getElementById('arrow-down').style.opacity = 1;
+            }, 3000);
+
+            document.getElementById('arrow-down').addEventListener('click', () => {
+                document.getElementById('why-join').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            const memberCountElement = document.getElementById('member-count');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        countUp(memberCountElement, 0, 225000, 2000);
+                        triggerConfetti();
+                        observer.unobserve(memberCountElement);
+                    }
+                });
+            });
+
+            observer.observe(memberCountElement);
+
+            const values = [
+                'NickEh30', 
+                'Fortnite', 
+                'gaming', 
+                'chatting', 
+                'being kind', 
+                'being family friendly', 
+                'having a good time',
+                'being positive',
+                'having a laugh',
+                'being respectful',
+                'having a great time',
+                'being supportive',
+                'having a great time',
+                'being ehhmazing',
+                'having fun', 
+                'making friends',
+                'playing games',
+                'learning new skills',
+                'being a part of the EhTeam', 
+
+            ];
+            let currentIndex = 0;
+            const scrollingTextElement = document.getElementById('scrolling-text');
+
+            function updateScrollingText() {
+                scrollingTextElement.textContent = values[currentIndex];
+                scrollingTextElement.style.opacity = 1;
+                setTimeout(() => {
+                    scrollingTextElement.style.opacity = 0;
+                }, 2000);
+                currentIndex = (currentIndex + 1) % values.length;
+            }
+
+            setInterval(updateScrollingText, 2950);
+            updateScrollingText();
+        });
+
+        function countUp(element, start, end, duration) {
+            let startTime = null;
+
+            function animate(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const progress = currentTime - startTime;
+                const easing = easeOutCubic(progress / duration);
+                const current = Math.min(Math.floor(easing * (end - start) + start), end);
+                element.textContent = formatNumber(current) + '+';
+
+                if (current < end) {
+                    requestAnimationFrame(animate);
+                }
+            }
+
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        function triggerConfetti() {
+            confetti({
+                particleCount: 300,
+                spread: 200,
+                origin: { y: 0.5 }
+            });
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
+</body>
+</html>
