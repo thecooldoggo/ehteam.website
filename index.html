@@ -263,7 +263,6 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
             color: #ffffff;
             border: none;
             width: 50px; 
@@ -271,16 +270,18 @@
             cursor: pointer;
             font-size: 2em;
             z-index: 1;
-            transition: background-color 0.3s ease;
             border-radius: 50%;
             display: flex;
             padding: 30px;
             justify-content: center;
             align-items: center;
+            transition: ease-in-out 0.3s;
+            background: transparent;
         }
 
         .carousel-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            scale: 1.1;
+            transition: ease-in-out 0.3s;
         }
 
         .carousel-button.prev {
@@ -421,7 +422,13 @@
                 <p class="quote">"!petmax"</p>
                 <p class="author">- ItssJenn, Member Since 2021</p>
             </div>
-            
+            <div class="testimonial-card">
+                <p class="quote">"If you back down and give up, you will never be a true king. But to those who try hard and never back down and never give up, you shall earn everyone's respect and be crowned the king."</p>
+                <p class="author">- MajorJMan, Member Since 2023</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="quote">"Being in the Eh Team is like getting a free upgrade to the fun version of life—where the only lag is from too much laughing!"</p>
+                <p class="author">- Drewski__13, Member Since 2022</p>
         </div>
         <button class="carousel-button prev">&#10094;</button>
         <button class="carousel-button next">&#10095;</button>
