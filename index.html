@@ -461,25 +461,57 @@
             const prevButton = document.querySelector('.carousel-button.prev');
             const nextButton = document.querySelector('.carousel-button.next');
             let currentIndex = 0;
-
+            let autoCycleTimer;
+        
             function updateCarousel() {
                 const offset = -currentIndex * 102;
                 cards.forEach(card => {
                     card.style.transform = `translateX(${offset}%)`;
                 });
             }
-
+        
+            function startAutoCycle() {
+                autoCycleTimer = setInterval(() => {
+                    nextButton.click();
+                }, 6000);
+            }
+        
+            function resetAutoCycle() {
+                clearInterval(autoCycleTimer);
+                startAutoCycle();
+            }
+        
             prevButton.addEventListener('click', () => {
                 currentIndex = (currentIndex > 0) ? currentIndex - 1 : cards.length - 1;
                 updateCarousel();
+                resetAutoCycle();
             });
-
+        
             nextButton.addEventListener('click', () => {
                 currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
                 updateCarousel();
+                resetAutoCycle();
             });
-
+        
+            let touchStartX = 0;
+            let touchEndX = 0;
+        
+            carousel.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+        
+            carousel.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+        
+            function handleSwipe() {
+                if (touchEndX < touchStartX) nextButton.click();
+                if (touchEndX > touchStartX) prevButton.click();
+            }
+        
             updateCarousel();
+            startAutoCycle();
         });
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
