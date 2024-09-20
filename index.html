@@ -439,9 +439,7 @@
             <p class="author">- Supadog, Member Since 2022</p>
         </div>
     </div>
-    <button class="carousel-button prev">&#10094;</button>
-    <button class="carousel-button next">&#10095;</button>
-</section>
+    </section>
 
     <section id="join-ehteam">
         <h3>What are you waiting for? Join the EhTeam!</h3>
@@ -458,13 +456,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             const carousel = document.querySelector('.carousel');
             const cards = document.querySelectorAll('.testimonial-card');
-            const prevButton = document.querySelector('.carousel-button.prev');
-            const nextButton = document.querySelector('.carousel-button.next');
             let currentIndex = 0;
             let autoCycleTimer;
         
             function updateCarousel() {
-                const offset = -currentIndex * 102;
+                const offset = -currentIndex * 100;
                 cards.forEach(card => {
                     card.style.transform = `translateX(${offset}%)`;
                 });
@@ -472,7 +468,8 @@
         
             function startAutoCycle() {
                 autoCycleTimer = setInterval(() => {
-                    nextButton.click();
+                    currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
+                    updateCarousel();
                 }, 6000);
             }
         
@@ -480,19 +477,7 @@
                 clearInterval(autoCycleTimer);
                 startAutoCycle();
             }
-        
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : cards.length - 1;
-                updateCarousel();
-                resetAutoCycle();
-            });
-        
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
-                updateCarousel();
-                resetAutoCycle();
-            });
-        
+    
             let touchStartX = 0;
             let touchEndX = 0;
         
@@ -506,8 +491,13 @@
             });
         
             function handleSwipe() {
-                if (touchEndX < touchStartX) nextButton.click();
-                if (touchEndX > touchStartX) prevButton.click();
+                if (touchEndX < touchStartX) {
+                    currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
+                } else if (touchEndX > touchStartX) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : cards.length - 1;
+                }
+                updateCarousel();
+                resetAutoCycle();
             }
         
             updateCarousel();
