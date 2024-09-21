@@ -262,8 +262,8 @@
         }
 
         .testimonial-card {
-            min-width: 500px;
-            max-width: 900px;
+            min-width: 580px;
+            max-width: 1000px;
             height: 500px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             padding: 20px;
@@ -276,6 +276,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            user-select: none; 
         }
 
         .testimonial-card .quote {
@@ -316,7 +317,7 @@
 
         .join-button {
             font-family: 'RifficBold', sans-serif;
-            font-size: 1.5em;
+            font-size: 1.7em;
             padding: 15px 30px;
             margin: 10px;
             border: none;
@@ -453,7 +454,14 @@
 
         #faq a:hover {
             text-decoration: underline;
-        }   
+        }
+        .highlighted-author {
+            font-size: 1em;
+            background: linear-gradient(to right, #14cfd1, #0afbff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
     </style>
 </head>
 <body>
@@ -492,7 +500,7 @@
                 </div> 
                 <div class="testimonial-card">
                     <p class="quote">"!petmax"</p>
-                    <p class="author">- itssjenn, Member Since 2021</p>
+                    <p class="author">- <span class="highlighted-author">itsjenn</span>, Member Since 2021</p>
                 </div>
                 <div class="testimonial-card">
                     <p class="quote">"If you back down and give up, you will never be a true king. But to those who try hard and never back down and never give up, you shall earn everyone's respect and be treated like a king."</p>
@@ -508,7 +516,7 @@
                 </div>
                 <div class="testimonial-card">
                     <p class="quote">":3"</p>
-                    <p class="author">- RalseiTheReal, Member Since 2022</p>
+                    <p class="author">- RalseiTheReal, Member Since 2023</p>
                 </div>
                 <div class="testimonial-card">
                     <p class="quote">"Being in the Eh Team is like getting a free upgrade to the fun version of life—where the only lag is from too much laughing!"</p>
@@ -532,8 +540,12 @@
                 </div>
                 <div class="testimonial-card">
                     <p class="quote">"Jake 🌵⚡️ was here"</p>
-                    <p class="author">- Jake, Member Since 2022</p>
-        </div>
+                    <p class="author">- Jake, Member Since 2022</p>                    
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">“The way someone else perceives you does not change anything about who you truly are. Follow your heart in life and not the heart of others. Be the light in a world of darkness. Be the change you want to see in this world. Don’t ever let anyone take that away from you, especially your own self"</p>
+                    <p class="author">- <span class="highlighted-author">Anthony</span>, Member Since 2022</p>
+                </div>
     </section>
     <section id="about-us">
         <h3>About Us</h3>
@@ -594,6 +606,7 @@
                 'being positive.',
                 'having a laugh.',
                 'being respectful.',
+                'being welcoming.',
                 'having a great time.',
                 'being supportive.',
                 'having a great time.',
@@ -624,24 +637,73 @@
             const cards = document.querySelectorAll('.testimonial-card');
             const cardWidth = cards[0].offsetWidth;
             const numCards = cards.length;
-    
-            // Clone cards to create a seamless loop
             cards.forEach(card => {
                 carouselTrack.appendChild(card.cloneNode(true));
             });
     
             let scrollPosition = 0;
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationId = 0;
+            let autoScrollTimeout;
+            const dragSpeedMultiplier = 1.5;
     
-            function scrollCarousel() {
-                scrollPosition += 1;
-                if (scrollPosition >= cardWidth * numCards) {
-                    scrollPosition = 0;
-                }
-                carouselTrack.style.transform = `translateX(-${scrollPosition}px)`;
-                requestAnimationFrame(scrollCarousel);
+            function setPositionByIndex() {
+                currentTranslate = prevTranslate + startPos;
+                carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
             }
     
-            scrollCarousel();
+            function animation() {
+                if (!isDragging) {
+                    scrollPosition += 1;
+                    if (scrollPosition >= cardWidth * numCards) {
+                        scrollPosition = 0;
+                    }
+                    carouselTrack.style.transform = `translateX(-${scrollPosition}px)`;
+                }
+                animationId = requestAnimationFrame(animation);
+            }
+    
+            function startDrag(event) {
+                isDragging = true;
+                startPos = getPositionX(event);
+                prevTranslate = currentTranslate;
+                cancelAnimationFrame(animationId);
+                clearTimeout(autoScrollTimeout);
+            }
+    
+            function drag(event) {
+                if (isDragging) {
+                    const currentPosition = getPositionX(event);
+                    currentTranslate = prevTranslate + (currentPosition - startPos) * dragSpeedMultiplier;
+                    carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
+                }
+            }
+    
+            function endDrag() {
+                isDragging = false;
+                prevTranslate = currentTranslate;
+                autoScrollTimeout = setTimeout(() => {
+                    animationId = requestAnimationFrame(animation);
+                }, 10000);
+            }
+    
+            function getPositionX(event) {
+                return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+            }
+    
+            carouselTrack.addEventListener('mousedown', startDrag);
+            carouselTrack.addEventListener('mousemove', drag);
+            carouselTrack.addEventListener('mouseup', endDrag);
+            carouselTrack.addEventListener('mouseleave', endDrag);
+            carouselTrack.addEventListener('touchstart', startDrag);
+            carouselTrack.addEventListener('touchmove', drag);
+            carouselTrack.addEventListener('touchend', endDrag);
+    
+            animation();
+    
         });
     
         function countUp(element, start, end, duration) {
