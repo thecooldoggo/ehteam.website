@@ -13,7 +13,7 @@
             font-family: 'RifficBold';
             src: url('rifficbold.ttf') format('truetype');
         }
-    
+
         * {
             margin: 0;
             padding: 0;
@@ -45,26 +45,26 @@
         .blob {
             position: absolute;
             border-radius: 60% 40%;
-            filter: blur(50px);
+            filter: blur(100px);
             opacity: 0.65;
             animation: moveBlob 60s infinite alternate ease-in-out, morphBlob 60s infinite alternate ease-in-out;
             z-index: 0;
         }
 
         .blob:nth-child(3) {
-            background-color: #ff4d4d91;
+            background-color: #ea00007f;
             width: 800px;
             height: 600px;
-            top: 15%;
-            left: 15%;
+            top: 10%;
+            left: 10%;
         }
 
         .blob:nth-child(4) {
-            background-color: #7f46ca9d;
+            background-color: #8b52d580;
             width: 600px;
             height: 400px;
-            bottom: 15%;
-            right: 15%;
+            bottom: 10%;
+            right: 10%;
             animation-delay: 10s;
         }
 
@@ -111,7 +111,7 @@
         #hero h2 {
             font-family: 'RifficBold', sans-serif;
             font-size: 7em;
-            background: linear-gradient(to right,  #f52929, #810791);
+            background: linear-gradient(to right, #250ed5, #e11212);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -195,6 +195,18 @@
             font-size: 1.2em;
         }
 
+        #member-count {
+            font-family: 'RifficBold', sans-serif;
+            background: linear-gradient(to right, #ff4d4d, #b565c0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.1em;
+            display: inline-block;
+            width: 190px;
+            text-align: right;
+        }
+
         #scrolling-text {
             font-size: 1em;
             line-height: 1em;
@@ -210,11 +222,12 @@
         }
 
         #testimonials {
-            padding: 60px 20px;
+            padding: 60px 0;
             margin-top: 50px;
             text-align: center;
             position: relative;
             color: #fff;
+            overflow: hidden; 
         }
 
         #testimonials h3 {
@@ -224,19 +237,34 @@
             color: #222222;
         }
 
+        @keyframes scrollCarousel {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%); 
+            }
+        }
         .carousel {
             display: flex;
             overflow: hidden;
-            width: 80%;
-            margin: 0 auto;
+            width: 100%;
+            justify-content: center;
             position: relative;
         }
 
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
         .testimonial-card {
-            min-width: 100%;
+            min-width: 500px;
+            max-width: 900px;
+            height: 500px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            padding: 60px 80px;
-            margin: 20px 20px;
+            padding: 20px;
+            margin: 10px;
             background: linear-gradient(to right, #230553, #5d0797);
             border-radius: 20px;
             transition: transform 0.3s ease;
@@ -259,6 +287,55 @@
             color: #ccc;
         }
 
+        #join-ehteam {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #join-ehteam .join-button {
+            display: inline-block;
+            margin: 10px 20px;
+            vertical-align: middle;
+        }
+
+        #join-ehteam .join-buttons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        #join-ehteam h3 {
+            font-family: 'RifficBold', sans-serif;
+            font-size: 4em;
+            margin-bottom: 30px;
+            color: #222222;
+        }
+
+        .join-button {
+            font-family: 'RifficBold', sans-serif;
+            font-size: 1.5em;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(to right, #ff4d4d, #b565c0);
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            transition: ease-in-out 0.3s;
+            display: inline-block;
+            margin: 10px 20px;
+        }
+        #join-ehteam .join-button {
+            display: inline-block;
+            margin: 10px 20px;
+            vertical-align: middle;
+        }
+        .join-button:hover {
+            background: linear-gradient(to right, #b565c0, #ff4d4d);
+            scale: 1.1;
+            transition: ease-in-out 0.3s;
+        }
 
         @media (max-width: 768px) {
             .blob:nth-child(3) {
@@ -305,6 +382,8 @@
 
             .testimonial-card {
                 padding: 20px;
+                width: 90%;
+                height: auto;
             }
 
             .testimonial-card .quote {
@@ -314,43 +393,46 @@
             .testimonial-card .author {
                 font-size: 1em;
             }
+
+            #join-ehteam h3 {
+                font-size: 2em;
+            }
+
+            .join-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
         }
 
-        #join-ehteam {
+        #about-us, #faq {
             padding: 60px 20px;
             margin-top: 50px;
             text-align: center;
             background-color: #f5f5f5;
-            display: inline-block;
         }
 
-        #join-ehteam h3 {
+        #about-us h3, #faq h3 {
             font-family: 'RifficBold', sans-serif;
             font-size: 4em;
             margin-bottom: 30px;
             color: #222222;
         }
 
-        .join-button {
-            font-family: 'RifficBold', sans-serif;
-            font-size: 1.5em;
-            padding: 15px 30px;
-            margin: 10px;
-            border: none;
-            border-radius: 30px;
-            background: linear-gradient(to right, #ff4d4d, #b565c0);
-            color: #fff;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            transition: ease-in-out 0.3s;
-            display: inline-block;
+        #about-us p, #faq p {
+            font-size: 2em;
+            line-height: 1.6;
+            color: #555555;
         }
 
-        .join-button:hover {
-            background: linear-gradient(to right, #b565c0, #ff4d4d);
-            scale: 1.1;
-            transition: ease-in-out 0.3s;
+        #faq a {
+            color: #250ed5;
+            text-decoration: none;
+            font-weight: bold;
         }
+
+        #faq a:hover {
+            text-decoration: underline;
+        }   
     </style>
 </head>
 <body>
@@ -359,118 +441,99 @@
         <h2 id="ehteam-title">EhTeam</h2> 
         <div class="blob"></div> 
         <div class="blob"></div>
-        <div class="arrow-down" id="arrow-down">&#x2193;</div>
+        <div class="arrow-down" id="arrow-down">↓</div>
     </section>
 
     <section id="why-join">
         <h3>Who are we?</h3>
-        <p>We are a community of <span class="gradient-text" id="member-count">225,000+</span> members that love <span id="scrolling-text"></span>.</p>
+        <p>We are a community of <span class="gradient-text"><span id="member-count">225,000+</span></span> members that love <span class="gradient-text"><span id="scrolling-text"></span></span></p>
     </section>
 
     <section id="testimonials">
         <h3>What Our Members Say</h3>
         <div class="carousel">
-            <div class="testimonial-card">
-                <p class="quote">"The Eh Team is a good community, because of the ability to be in a safe space when you want it to be one, and also a fun space where everyone loves and treats each other with respect."</p>
-                <p class="author">- Spidey, Member Since 2018</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"Never Back Down Never What?!"</p>
-                <p class="author">- NickEh30</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"I love the positive vibes, and kindness from everyone."</p>
-                <p class="author">- TheCoolDoggo, Member Since 2023</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"For my 5 years of rotating between Fortnite discord servers, I have never found one more friendly and comfortable than The Eh Team. All of my dreams truly came true. "</p>
-                <p class="author">- Jake E Boo, Member Since 2021</p>   
-            </div> 
-            <div class="testimonial-card">
-                <p class="quote">"!petmax"</p>
-                <p class="author">- itssjenn, Member Since 2021</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"If you back down and give up, you will never be a true king. But to those who try hard and never back down and never give up, you shall earn everyone's respect and be treated like a king."</p>
-                <p class="author">- MajorJMan, Member Since 2023</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"Being in the Eh Team is like getting a free upgrade to the fun version of life—where the only lag is from too much laughing!"</p>
-                <p class="author">- Drewski__13, Member Since 2022</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"The ehteam was the most welcoming community I have ever been in, I felt so welcomed when I first joined it, all the people were really nice to me, and I love that. W NickEh30 for making such a wonderful community."</p>
-                <p class="author">- Hassan Eh 30, Member Since 2022</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"IS THAT JAKE!?!"</p>
-                <p class="author">- Supadog, Member Since 2022</p>
+            <div class="carousel-track">
+                <div class="testimonial-card">
+                    <p class="quote">"The Eh Team is a good community, because of the ability to be in a safe space when you want it to be one, and also a fun space where everyone loves and treats each other with respect."</p>
+                    <p class="author">- Spidey, Member Since 2018</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"Never Back Down Never What?!"</p>
+                    <p class="author">- NickEh30</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"I love the positive vibes, and kindness from everyone."</p>
+                    <p class="author">- TheCoolDoggo, Member Since 2023</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"For my 5 years of rotating between Fortnite discord servers, I have never found one more friendly and comfortable than The Eh Team. All of my dreams truly came true. "</p>
+                    <p class="author">- Jake E Boo, Member Since 2021</p>   
+                </div> 
+                <div class="testimonial-card">
+                    <p class="quote">"!petmax"</p>
+                    <p class="author">- itssjenn, Member Since 2021</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"If you back down and give up, you will never be a true king. But to those who try hard and never back down and never give up, you shall earn everyone's respect and be treated like a king."</p>
+                    <p class="author">- MajorJMan, Member Since 2023</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"sple"</p>
+                    <p class="author">- Octo, Member Since 2022</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"This community is probably the most funny and the most friendly community I know. You’ll find people wanting to talk about Fortnite, you’ll find people wanting to talk for the sake of conversation! There’s something for everyone here!"</p>
+                    <p class="author">- TheSniperCam, Member Since 2024</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">":3"</p>
+                    <p class="author">- RalseiTheReal, Member Since 2022</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"Being in the Eh Team is like getting a free upgrade to the fun version of life—where the only lag is from too much laughing!"</p>
+                    <p class="author">- Drewski__13, Member Since 2022</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"The ehteam was the most welcoming community I have ever been in, I felt so welcomed when I first joined it, all the people were really nice to me, and I love that. W NickEh30 for making such a wonderful community."</p>
+                    <p class="author">- Hassan Eh 30, Member Since 2022</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"IS THAT JAKE!?!"</p>
+                    <p class="author">- Supadog, Member Since 2022</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"Spreading positivity makes a FANTASTIC community just like the EH-Team!"</p>
+                    <p class="author">- FoxyFantastic, Member Since 2022</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"The EhTeam is a great place to just stop by and have a laugh with other members. Everyone is super friendly and they are all very welcoming. I have loads of great memories with the ehteam that I will be sure to keep with me for a very long time"</p>
+                    <p class="author">- A Casual Fishy, Member Since 2023</p>
             </div>
         </div>
     </section>
-
+    <section id="about-us">
+        <h3>About Us</h3>
+        <p>Here at the EhTeam, we strive to create a family-friendly and inclusive environment where everyone is respectful, and can be themselves.</p>
+    </section>
+    <section id="faq">
+        <h3>Frequently Asked Questions</h3>
+        <p>For more information, visit our <a href="https://faq.ehteam.website" target="_blank">FAQ page</a>.</p>
+    </section>
     <section id="join-ehteam">
         <h3>What are you waiting for? Join the EhTeam!</h3>
-        <a href="https://twitch.tv/nickeh30" target="_blank"><button class="join-button">Twitch</button></a>
-        <a href="https://discord.gg/nickeh30" target="_blank"><button class="join-button">Discord</button></a>
+        <div class="join-buttons-container">
+            <a href="https://twitch.tv/nickeh30" target="_blank"><button class="join-button">Twitch</button></a>
+            <a href="https://discord.gg/nickeh30" target="_blank"><button class="join-button">Discord</button></a>
+            <a href="https://youtube.com/nickeh30" target="_blank"><button class="join-button">YouTube</button></a>
+        </div>
     </section>
 
     <footer>
-        <p>Non-Offical. Made with love by TheCoolDoggo. Go out into the world and create something amazing 🤍</p>
+        <p>Non-Offical/Fan Art. Made with love by TheCoolDoggo. Go out into the world and create something amazing 🤍</p>
     </footer>
-
+ <!-- diabeetus -drewski 13 -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const carousel = document.querySelector('.carousel');
-            const cards = document.querySelectorAll('.testimonial-card');
-            let currentIndex = 0;
-            let autoCycleTimer;
-        
-            function updateCarousel() {
-                const offset = -currentIndex * 100;
-                cards.forEach(card => {
-                    card.style.transform = `translateX(${offset}%)`;
-                });
-            }
-        
-            function startAutoCycle() {
-                autoCycleTimer = setInterval(() => {
-                    currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
-                    updateCarousel();
-                }, 6000);
-            }
-        
-            function resetAutoCycle() {
-                clearInterval(autoCycleTimer);
-                startAutoCycle();
-            }
-    
-            let touchStartX = 0;
-            let touchEndX = 0;
-        
-            carousel.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-        
-            carousel.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-        
-            function handleSwipe() {
-                if (touchEndX < touchStartX) {
-                    currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
-                } else if (touchEndX > touchStartX) {
-                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : cards.length - 1;
-                }
-                updateCarousel();
-                resetAutoCycle();
-            }
-        
-            updateCarousel();
-            startAutoCycle();
-        });
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.getElementById('hero').classList.add('show-ehteam');
@@ -478,11 +541,11 @@
             setTimeout(() => {
                 document.getElementById('arrow-down').style.opacity = 1;
             }, 3000);
-
+    
             document.getElementById('arrow-down').addEventListener('click', () => {
                 document.getElementById('why-join').scrollIntoView({ behavior: 'smooth' });
             });
-
+    
             const memberCountElement = document.getElementById('member-count');
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
@@ -493,34 +556,33 @@
                     }
                 });
             });
-
+    
             observer.observe(memberCountElement);
-
+    
             const values = [
-                'NickEh30', 
-                'Fortnite', 
-                'gaming', 
-                'chatting', 
-                'being kind', 
-                'being family friendly', 
-                'having a good time',
-                'being positive',
-                'having a laugh',
-                'being respectful',
-                'having a great time',
-                'being supportive',
-                'having a great time',
-                'being ehhmazing',
-                'having fun', 
-                'making friends',
-                'playing games',
-                'learning new skills',
-                'being a part of the EhTeam', 
-
+                'NickEh30.', 
+                'Fortnite.', 
+                'gaming.', 
+                'chatting.',
+                'being kind.', 
+                'being family friendly.', 
+                'having a good time.',
+                'being positive.',
+                'having a laugh.',
+                'being respectful.',
+                'having a great time.',
+                'being supportive.',
+                'having a great time.',
+                'being ehhmazing.',
+                'having fun.', 
+                'making friends.',
+                'playing games.',
+                'learning new skills.',
+                'being a part of the EhTeam.', 
             ];
             let currentIndex = 0;
             const scrollingTextElement = document.getElementById('scrolling-text');
-
+    
             function updateScrollingText() {
                 scrollingTextElement.textContent = values[currentIndex];
                 scrollingTextElement.style.opacity = 1;
@@ -529,33 +591,57 @@
                 }, 2000);
                 currentIndex = (currentIndex + 1) % values.length;
             }
-
+    
             setInterval(updateScrollingText, 2950);
             updateScrollingText();
+    
+            const carousel = document.querySelector('.carousel');
+            const carouselTrack = document.querySelector('.carousel-track');
+            const cards = document.querySelectorAll('.testimonial-card');
+            const cardWidth = cards[0].offsetWidth;
+            const numCards = cards.length;
+    
+            // Clone cards to create a seamless loop
+            cards.forEach(card => {
+                carouselTrack.appendChild(card.cloneNode(true));
+            });
+    
+            let scrollPosition = 0;
+    
+            function scrollCarousel() {
+                scrollPosition += 1;
+                if (scrollPosition >= cardWidth * numCards) {
+                    scrollPosition = 0;
+                }
+                carouselTrack.style.transform = `translateX(-${scrollPosition}px)`;
+                requestAnimationFrame(scrollCarousel);
+            }
+    
+            scrollCarousel();
         });
-
+    
         function countUp(element, start, end, duration) {
             let startTime = null;
-
+    
             function animate(currentTime) {
                 if (startTime === null) startTime = currentTime;
                 const progress = currentTime - startTime;
                 const easing = easeOutCubic(progress / duration);
                 const current = Math.min(Math.floor(easing * (end - start) + start), end);
                 element.textContent = formatNumber(current) + '+';
-
+    
                 if (current < end) {
                     requestAnimationFrame(animate);
                 }
             }
-
+    
             function easeOutCubic(t) {
                 return 1 - Math.pow(1 - t, 3);
             }
-
+    
             requestAnimationFrame(animate);
         }
-
+    
         function triggerConfetti() {
             confetti({
                 particleCount: 300,
@@ -563,7 +649,7 @@
                 origin: { y: 0.5 }
             });
         }
-
+    
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
