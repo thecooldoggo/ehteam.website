@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to the EhTeam!</title>
     <link rel="icon" href="favicon.png" type="image/png">
-    <og:title content="Welcome to the EhTeam!">
-    <og:description content="Join the EhTeam community today!">
+    <meta property="og:title" content="Welcome to the EhTeam!">
+    <meta property="og:description" content="A lander page for the EhTeam, NickEh30's Community.">
+    <meta property="og:url" content="https://ehteam.website/">
+    <meta property="og:image" content="https://ehteam.website/preview.png">
+    <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         @font-face {
@@ -211,7 +214,7 @@
             font-size: 1em;
             line-height: 1em;
             font-weight: bold;
-            background: linear-gradient(to right, #ff4d4d, #b565c0);
+            background: linear-gradient(to right, #ff1515, #5b0bf0);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -379,19 +382,35 @@
             #testimonials h3 {
                 font-size: 2em;
             }
+            #about-us h3, #faq h3 {
+                font-size: 1.5em !important;
+            }
+            #about-us, #faq {
+                padding: 20px 5px;
+            }
 
+            #about-us h3, #faq h3 {
+                font-size: 2em !important;
+            }
+
+            #about-us p, #faq p {
+                font-size: 1.5em !important;
+            }
+            .carousel {
+                height: 300px;
+            }
             .testimonial-card {
-                padding: 20px;
-                width: 90%;
-                height: auto;
+                min-width: 300px;
+                max-width: 300px;
+                height: 280px;
             }
 
             .testimonial-card .quote {
-                font-size: 1.2em;
+                font-size: 1em;
             }
 
             .testimonial-card .author {
-                font-size: 1em;
+                font-size: .8em;
             }
 
             #join-ehteam h3 {
@@ -425,9 +444,11 @@
         }
 
         #faq a {
-            color: #250ed5;
+            background: linear-gradient(to right, #ff1515, #5b0bf0);
             text-decoration: none;
             font-weight: bold;
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
         #faq a:hover {
